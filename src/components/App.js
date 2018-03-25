@@ -7,7 +7,7 @@ const App = () => {
     <div className="App">
       <h1>Star Wars Characters</h1>
       <CharacterList />
-      <span>Created by Dolores Quinonez</span>
+      <span className="footer">Created by Dolores Quinonez</span>
     </div>
   );
 };

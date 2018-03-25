@@ -3,7 +3,6 @@ body{
 }
 
 .App {
-  border: 2px solid black;
   text-align: center;
   background: #000;
   color: yellow;
@@ -11,4 +10,9 @@ body{
 
 h1 {
   margin-bottom: 30px;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
 }

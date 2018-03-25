@@ -98,12 +98,12 @@ class CharacterList extends Component {
       <div className="CharacterList">
       <Grid>
         <Row>
-          <Col md={6}>
+          <Col md={12}>
             <ListGroup>
               {this.renderCharacters()}
             </ListGroup>
           </Col>
-          <Col md={6}>
+          <Col md={12}>
               {this.renderMovies()}
           </Col>
         </Row>
