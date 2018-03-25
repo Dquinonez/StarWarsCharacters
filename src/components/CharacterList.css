@@ -1,3 +1,11 @@
+.character-name, .error-message {
+  font-size: large;
+}
+
+img{
+  margin-bottom: 10px;
+}
+
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }

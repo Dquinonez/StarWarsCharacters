@@ -2,8 +2,13 @@ li{
   margin-bottom: 15px;
 }
 
+.property-name{
+  font-weight: bold;
+}
+
 .movie-list{
   text-align: left;
+  color:#000;
 }
 
 .character-name {

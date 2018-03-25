@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { ListGroupItem, ListGroup, Grid, Row, Col, Alert } from 'react-bootstrap';
 import './CharacterList.css';
+import Image from './obi.jpg'
 import MovieList from './MovieList';
 
 class CharacterList extends Component {
@@ -35,7 +36,7 @@ class CharacterList extends Component {
 
   renderCharacters() {
     return this.state.characters.map((character, index) => (
-      <ListGroupItem key={index} id={character.name} onClick={this.handleClick.bind(this)}>{character.name}</ListGroupItem>
+      <ListGroupItem key={index} className="character-name" id={character.name} onClick={this.handleClick.bind(this)}>{character.name}</ListGroupItem>
     ));
   }
 
@@ -48,7 +49,13 @@ class CharacterList extends Component {
 
     if (this.state.error && this.state.error !== '') {
       return (
-        <Alert bsStyle="danger">"Error: These aren’t the droids you’re looking for..."</Alert>
+        <Alert bsStyle="danger">
+          <span className="error-message">ERROR</span>
+          <br/>
+          <img src={Image} />
+          <br/>
+          <span className="error-message">"These aren’t the droids you’re looking for..."</span>
+        </Alert>
       );
     }
 

@@ -9,9 +9,11 @@ class MovieList extends Component {
       <li key={index}>
         <span className="title">{film.title} - Episode {film.episode_id}</span>
         <br/>
-        Release Date: {moment(film.release_date).format("dddd, MMMM Do YYYY")}
+        <span className="property-name">Release Date: </span>
+        {moment(film.release_date).format("dddd, MMMM Do YYYY")}
         <br/>
-        Director: {film.director}
+        <span className="property-name">Director: </span>
+        {film.director}
       </li>
     ));
   }

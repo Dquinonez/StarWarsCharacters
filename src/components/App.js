@@ -5,8 +5,9 @@ import CharacterList from './CharacterList';
 const App = () => {
   return (
     <div className="App">
-      <h1>Star wars Characters App</h1>
+      <h1>Star Wars Characters</h1>
       <CharacterList />
+      <span>Created by Dolores Quinonez</span>
     </div>
   );
 };
