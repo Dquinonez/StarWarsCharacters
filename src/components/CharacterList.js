@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './CharacterList.css';
-import Character from './Character';
+import axios from 'axios';
+import { ListGroupItem, ListGroup, Grid, Row, Col } from 'react-bootstrap';
+import MovieList from './MovieList';
 
 class CharacterList extends Component {
   constructor(props) {
@@ -24,20 +25,78 @@ class CharacterList extends Component {
           "name": "R2-D2",
           "url": "https://swapi.co/api/people/3/"
         }
-      ]
-    };
+      ],
+      character: '',
+      movies: [],
+      loading: false
+    }
   }
 
   renderCharacters() {
     return this.state.characters.map((character, index) => (
-      <Character key={index} name={character.name} url={character.url}/>
+      <ListGroupItem key={index} id={character.name} onClick={this.handleClick.bind(this)}>{character.name}</ListGroupItem>
     ));
+  }
+
+  renderMovies() {
+    if (this.state.loading) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
+    if (this.state.error && this.state.error !== '') {
+      return (
+        <div>"These aren’t the droids you’re looking for..."</div>
+      );
+    }
+
+    if (this.state.character !== '') {
+      return (
+        <MovieList movies={this.state.movies} name={this.state.character} />
+      );
+    }
+  }
+
+  handleClick(e) {
+    let character = this.state.characters.find(obj => obj.name === e.target.id);
+    this.setState({ character: character.name, loading: true });
+    console.log(character);
+
+    // Get character info
+    axios.get(character.url)
+      .then(res => {
+        let films = res.data.films || [];
+        let promises = films.map(filmUrl => axios.get(filmUrl));
+        let filmObjects = [];
+
+        axios.all(promises).then(results => {
+          results.forEach(response => {
+            filmObjects.push(response.data);
+          });
+        });
+
+        this.setState({ loading: false, error: '', movies: filmObjects });
+      }).catch(error => {
+        this.setState({ loading: false, error });
+      });
   }
 
   render() {
     return (
       <div className="CharacterList">
-        {this.renderCharacters()}
+      <Grid>
+        <Row>
+          <Col md={6}>
+            <ListGroup>
+              {this.renderCharacters()}
+            </ListGroup>
+          </Col>
+          <Col md={6}>
+              {this.renderMovies()}
+          </Col>
+        </Row>
+      </Grid>
       </div>
     );
   }
