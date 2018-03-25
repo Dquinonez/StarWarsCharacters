@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ListGroupItem, ListGroup, Grid, Row, Col } from 'react-bootstrap';
+import { ListGroupItem, ListGroup, Grid, Row, Col, Alert } from 'react-bootstrap';
+import './CharacterList.css';
 import MovieList from './MovieList';
 
 class CharacterList extends Component {
@@ -41,13 +42,13 @@ class CharacterList extends Component {
   renderMovies() {
     if (this.state.loading) {
       return (
-        <div>Loading...</div>
+        <div className="loader"></div>
       );
     }
 
     if (this.state.error && this.state.error !== '') {
       return (
-        <div>"These aren’t the droids you’re looking for..."</div>
+        <Alert bsStyle="danger">"Error: These aren’t the droids you’re looking for..."</Alert>
       );
     }
 
@@ -61,7 +62,6 @@ class CharacterList extends Component {
   handleClick(e) {
     let character = this.state.characters.find(obj => obj.name === e.target.id);
     this.setState({ character: character.name, loading: true });
-    console.log(character);
 
     // Get character info
     axios.get(character.url)
@@ -70,13 +70,17 @@ class CharacterList extends Component {
         let promises = films.map(filmUrl => axios.get(filmUrl));
         let filmObjects = [];
 
+        // Get films
         axios.all(promises).then(results => {
           results.forEach(response => {
             filmObjects.push(response.data);
           });
+
+          this.setState({ loading: false, error: '', movies: filmObjects });
+        }).catch((error) => {
+          this.setState({ loading: false, error });
         });
 
-        this.setState({ loading: false, error: '', movies: filmObjects });
       }).catch(error => {
         this.setState({ loading: false, error });
       });

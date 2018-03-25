@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
+import './MovieList.css';
+import moment from 'moment';
 
 class MovieList extends Component {
   renderMovies() {
     return this.props.movies.map((film, index) => (
-      <li id={index} key={index}>{film.title}</li>
+      <li key={index}>
+        <span className="title">{film.title} - Episode {film.episode_id}</span>
+        <br/>
+        Release Date: {moment(film.release_date).format("dddd, MMMM Do YYYY")}
+        <br/>
+        Director: {film.director}
+      </li>
     ));
   }
 
   render() {
     return (
       <Panel>
-        <Panel.Heading>{this.props.name}</Panel.Heading>
-        <Panel.Body>
-          <ul>
+        <Panel.Heading className="character-name">{this.props.name}</Panel.Heading>
+        <Panel.Body className="movie-list">
+          <ol>
             {this.renderMovies()}
-          </ul>
+          </ol>
         </Panel.Body>
       </Panel>
     );
