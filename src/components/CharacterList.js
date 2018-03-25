@@ -52,7 +52,7 @@ class CharacterList extends Component {
         <Alert bsStyle="danger">
           <span className="error-message">ERROR</span>
           <br/>
-          <img src={Image} />
+          <div className="image-container"><img src={Image} /></div>
           <br/>
           <span className="error-message">"These aren’t the droids you’re looking for..."</span>
         </Alert>
