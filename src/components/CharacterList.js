@@ -3,31 +3,14 @@ import axios from 'axios';
 import { ListGroupItem, ListGroup, Grid, Row, Col, Alert } from 'react-bootstrap';
 import './CharacterList.css';
 import Image from './obi.jpg'
+import data from '../characters';
 import MovieList from './MovieList';
 
 class CharacterList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      characters:
-      [
-        {
-          "name": "Luke Skywalker",
-          "url": "https://swapi.co/api/people/1/"
-        },
-        {
-          "name": "Darth Vader",
-          "url": "https://swapi.co/api/people/4/"
-        },
-        {
-          "name": "Obi-wan Kenobi",
-          "url": "https://swapi.co/api/people/unknown/"
-        },
-        {
-          "name": "R2-D2",
-          "url": "https://swapi.co/api/people/3/"
-        }
-      ],
+      characters: data.characters,
       character: '',
       movies: [],
       loading: false
