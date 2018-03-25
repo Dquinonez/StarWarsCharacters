@@ -26,6 +26,9 @@ To view the project, go to: http://localhost:3000/
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 [React](https://reactjs.org/)
+
 [Axios](https://github.com/axios/axios)
+
 [Moment.js](https://momentjs.com/)
+
 [react-bootstrap](https://react-bootstrap.github.io/)
