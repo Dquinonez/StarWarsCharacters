@@ -23,9 +23,9 @@ class MovieList extends Component {
       <Panel>
         <Panel.Heading className="character-name">{this.props.name}</Panel.Heading>
         <Panel.Body className="movie-list">
-          <ol>
+          <ul>
             {this.renderMovies()}
-          </ol>
+          </ul>
         </Panel.Body>
       </Panel>
     );
