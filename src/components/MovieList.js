@@ -7,7 +7,7 @@ class MovieList extends Component {
   renderMovies() {
     return this.props.movies.map((film, index) => (
       <li key={index}>
-        <span className="title">{film.title} - Episode {film.episode_id}</span>
+        <span className="title">Episode {film.episode_id} - {film.title}</span>
         <br/>
         <span className="property-name">Release Date: </span>
         {moment(film.release_date).format("dddd, MMMM Do YYYY")}
