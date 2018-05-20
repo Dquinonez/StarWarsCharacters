@@ -2,6 +2,8 @@
 
 React app that uses the [Star Wars API](http://swapi.co) to generate a list of the films that a particular character appears in.
 
+[DEMO](https://starwars-assignment-app.herokuapp.com/)
+
 Getting Started
 ---------------
 
